@@ -1,13 +1,7 @@
-version: '2'
-
-volumes:
-    sample-data:
-    
+version: '2'   
 services:
-
   cuda-toolkit:
-    build: .
-    #image: nvcr.io/nvidia/l4t-base:r32.5.0
+    build: ./cuda-toolkit
     privileged: true
     devices:
       - "/dev/nvhost-ctrl-gpu:/dev/nvhost-ctrl-gpu"
@@ -15,6 +9,17 @@ services:
       - "/dev/nvhost-dbg-gpu:/dev/nvhost-dbg-gpu"
       - "/dev/nvhost-prof-gpu:/dev/nvhost-prof-gpu"
       - "/dev/nvhost-ctrl:/dev/nvhost-ctrl"
-      - "/dev/shm:/dev/shm"
-    volumes:
-      - "sample-data:/data/samples"
+      - "/dev/shm:/dev/shm"      
+  tensorrt:
+    build: ./tensorrt
+    privileged: true
+  pytorch:
+    build: ./pytorch
+    privileged: true
+  tensorflow:
+    build: ./tensorflow
+    privileged: true
+  deepstream:
+    build: ./deepstream
+    privileged: true
+    network_mode: "host"
