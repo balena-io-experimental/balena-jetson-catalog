@@ -16,7 +16,7 @@ Currently, we have the following containers working:
 ## Background
 The NVIDIA Container Toolkit (and similar software) are prorietary tools that mount specific libraries and device nodes from the host into the container so it can use the GPU for computing purposes. Since these libraries are not available on a balenaOS host, the Toolkit will not work as intended and the container will fail to access the GPU. For a more in-depth description, as well as steps for converting other NGC containers to balenaOS, see the related blog post (TBA).
 
-The Dockerfiles in this repository use the NVIDIA images as base images and then install the missing libraries on top to provide full fucntionality with out the Toolkit/Runtime. Matching the versions of all the dependencies is the most critical (and difficult) part of the process.
+The Dockerfiles in this repository use the NVIDIA images as base images and then install the missing libraries on top of them to provide full fucntionality without the Toolkit/Runtime. Matching the versions of all the dependencies is the most critical (and difficult) part of the process.
 
 ## How to Use
 You can edit the `docker-compose.yml` file provided here and delete the services you don't need. 
@@ -25,5 +25,5 @@ These examples are for the Jetson TX2 for balenaOS version 2.113.33 or any versi
 
 They can also be easily modified for a Jetson Nano by making the following change: (TBA)
 
-
+We hope to include additional examples for newer devices running more recent versions of JetPack in the near future.
 
