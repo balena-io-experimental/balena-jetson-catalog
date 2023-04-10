@@ -1,0 +1,2 @@
+deb [trusted=yes] https://repo.download.nvidia.com/jetson/common r32.7 main
+deb [trusted=yes] https://repo.download.nvidia.com/jetson/t210 r32.7 main
