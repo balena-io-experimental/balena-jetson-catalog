@@ -3,13 +3,13 @@ services:
   cuda-toolkit:
     build: ./cuda-toolkit
     privileged: true
+    # If privileged: true then you don't need to map individual device nodes below
     devices:
       - "/dev/nvhost-ctrl-gpu:/dev/nvhost-ctrl-gpu"
       - "/dev/nvmap:/dev/nvmap"
       - "/dev/nvhost-dbg-gpu:/dev/nvhost-dbg-gpu"
       - "/dev/nvhost-prof-gpu:/dev/nvhost-prof-gpu"
-      - "/dev/nvhost-ctrl:/dev/nvhost-ctrl"
-      - "/dev/shm:/dev/shm"      
+      - "/dev/nvhost-ctrl:/dev/nvhost-ctrl" 
   tensorrt:
     build: ./tensorrt
     privileged: true
