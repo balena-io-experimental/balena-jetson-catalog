@@ -12,8 +12,8 @@ ENV UDEV=1
 
 # Download and install BSP binaries for L4T 32.7.3, note new nonstandard URL
 RUN \
-    cd /tmp/ && wget https://developer.nvidia.com/downloads/remetpack-463r32releasev73t210jetson-210linur3273aarch64tbz2 && \
-    tar xf remetpack-463r32releasev73t210jetson-210linur3273aarch64tbz2 && rm remetpack-463r32releasev73t210jetson-210linur3273aarch64tbz2 && \
+    cd /tmp/ && wget https://developer.nvidia.com/downloads/remksjetpack-463r32releasev73t186jetsonlinur3273aarch64tbz2 && \
+    tar xf remksjetpack-463r32releasev73t186jetsonlinur3273aarch64tbz2 && rm remksjetpack-463r32releasev73t186jetsonlinur3273aarch64tbz2 && \
     cd Linux_for_Tegra && \
     sed -i 's/config.tbz2\"/config.tbz2\" --exclude=etc\/hosts --exclude=etc\/hostname/g' apply_binaries.sh && \
     sed -i 's/install --owner=root --group=root \"${QEMU_BIN}\" \"${L4T_ROOTFS_DIR}\/usr\/bin\/\"/#install --owner=root --group=root \"${QEMU_BIN}\" \"${L4T_ROOTFS_DIR}\/usr\/bin\/\"/g' nv_tegra/nv-apply-debs.sh && \
