@@ -1,4 +1,4 @@
-FROM nvcr.io/nvidia/l4t-base:r32.5.0
+FROM nvcr.io/nvidia/l4t-base:r32.7.1
 
 # Don't prompt with any configuration questions
 ENV DEBIAN_FRONTEND noninteractive
