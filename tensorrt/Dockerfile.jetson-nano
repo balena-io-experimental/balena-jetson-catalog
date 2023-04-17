@@ -1,0 +1,25 @@
+FROM nvcr.io/nvidia/l4t-tensorrt:r8.0.1-runtime
+
+# Don't prompt with any configuration questions
+ENV DEBIAN_FRONTEND noninteractive
+
+# Install some utils
+RUN apt-get update && apt-get install -y lbzip2 git wget unzip jq xorg tar libegl1 binutils xz-utils bzip2
+
+ENV UDEV=1
+
+# Download and install BSP binaries for L4T 32.7.3, note new nonstandard URL
+RUN \
+    cd /tmp/ && wget https://developer.nvidia.com/downloads/remksjetpack-463r32releasev73t210jetsonlinur3273aarch64tbz2 && \
+    tar xf remksjetpack-463r32releasev73t210jetsonlinur3273aarch64tbz2 && rm remksjetpack-463r32releasev73t210jetsonlinur3273aarch64tbz2 && \
+    cd Linux_for_Tegra && \
+    sed -i 's/config.tbz2\"/config.tbz2\" --exclude=etc\/hosts --exclude=etc\/hostname/g' apply_binaries.sh && \
+    sed -i 's/install --owner=root --group=root \"${QEMU_BIN}\" \"${L4T_ROOTFS_DIR}\/usr\/bin\/\"/#install --owner=root --group=root \"${QEMU_BIN}\" \"${L4T_ROOTFS_DIR}\/usr\/bin\/\"/g' nv_tegra/nv-apply-debs.sh && \
+    sed -i 's/chroot . \//  /g' nv_tegra/nv-apply-debs.sh && \
+    ./apply_binaries.sh -r / --target-overlay && cd .. \
+    rm -rf Linux_for_Tegra && \
+    echo "/usr/lib/aarch64-linux-gnu/tegra" > /etc/ld.so.conf.d/nvidia-tegra.conf && ldconfig
+
+WORKDIR /usr/src/app
+
+CMD [ "sleep", "infinity" ]
