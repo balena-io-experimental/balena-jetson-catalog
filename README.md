@@ -17,8 +17,9 @@ This one is still in developemnet and not yet fully functional:
 
 - [DeepStream-L4T](https://catalog.ngc.nvidia.com/orgs/nvidia/containers/deepstream-l4t/)
 
+
 ## Background
-The NVIDIA Container Toolkit (and similar software) are prorietary tools that mount specific libraries and device nodes from the host into the container so it can use the GPU for computing purposes. Since these libraries are not available on a balenaOS host, the Toolkit will not work as intended and the container will fail to access the GPU. For a more in-depth description, as well as steps for converting other NGC containers to balenaOS, see the related blog post (TBA).
+The NVIDIA Container Toolkit (and similar software) are proprietary tools that mount specific libraries and device nodes from the host into the container so it can use the GPU for computing purposes. Since these libraries are not available on a balenaOS host, the Toolkit will not work as intended and the container will fail to access the GPU. For a more in-depth description, as well as steps for converting other NGC containers to balenaOS, see [the related blog post](https://blog.balena.io/jetson-ngc-catalog-containers/).
 
 The Dockerfiles in this repository use the NVIDIA images as base images and then install the missing libraries on top of them to provide full fucntionality without the Toolkit/Runtime.
 
